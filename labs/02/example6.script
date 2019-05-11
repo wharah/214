@@ -1,0 +1,94 @@
+Script started on Fri 08 Feb 2019 09:44:04 AM EST
+smw42@gold22:~/CS214/labs/02$ cat example6.lex
+%{
+#include <stdio.h>
+#include <stdlib.h>           /* atoi() */
+#include <string.h>           /* strcmp() */
+#include "example6.tab.h"
+%}
+%%
+[0-9]+                  yylval = atoi(yytext); return NUMBER;
+heat                    return TOKHEAT;
+on|off                  yylval = !strcmp(yytext,"on"); return STATE;
+set                     return TOKSET;
+temperature             return TOKTEMPERATURE;
+humidity		return TOKHUMIDITY;
+\n                      /* ignore end of line */;
+[ \t]+                  /* ignore whitespace */;
+%%smw42@gold22:~/CS214/labs/02$ cat example6.y
+%{
+#include <stdio.h>
+#include <string.h>
+
+/* declarations */
+int yylex (void);
+void yyerror (char const *);
+int yyparse(void);
+
+/* definitions */ 
+void yyerror(const char *str) {
+        fprintf(stderr,"error: %s\n",str);
+}
+ 
+int yywrap() {
+        return 1;
+} 
+ 
+int main() {
+        yyparse();
+} 
+
+%}
+
+%token NUMBER TOKHEAT STATE TOKSET TOKTEMPERATURE TOKHUMIDITY
+%%
+
+commands: /* empty */
+        | commands command
+        ;
+
+command:
+        heat_switch
+        | temperature_set
+	| humidity_set
+        ;
+
+heat_switch:
+        TOKHEAT STATE
+        {
+                if ($2) {  /* if STATE == 1 */
+                        printf("\tHeat turned on\n");
+                } else {
+                        printf("\tHeat turned off\n");
+                }
+        }
+        ;
+
+temperature_set: 
+        TOKSET TOKTEMPERATURE NUMBER
+        {
+                printf("\tTemperature set to %d\n",$3);
+        }
+        ;
+
+humidity_set:
+	TOKSET TOKHUMIDITY NUMBER
+	{
+		printf("\tHumidity set to %d\n",$3);
+	}
+	;
+smw42@gold22:~/CS214/labs/02$ flex example6.lex
+smw42@gold22:~/CS214/labs/02$ bison -d example6.y
+smw42@gold22:~/CS214/labs/02$ gcc lex.yy.c example6.tab.c -o example6
+smw42@gold22:~/CS214/labs/02$ ./example6
+heat on
+	Heat turned on
+set temperature 65
+	Temperature set to 65
+set humidity 40
+	Humidity set to 40
+heat off
+	Heat turned off
+smw42@gold22:~/CS214/labs/02$ exit
+
+Script done on Fri 08 Feb 2019 09:48:35 AM EST

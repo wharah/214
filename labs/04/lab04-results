@@ -1,0 +1,291 @@
+Script started on Sat 23 Feb 2019 05:16:40 PM EST
+smw42@gold32:~/CS214/labs/04$ cat LogTable.java
+/* LogTable.java displays a table of logarithms.
+ *
+ * Input: start, stop and increment, three doubles.
+ * PRE: start < stop && increment > 0.
+ * Output: A table of logarithms from start to stop,
+ *         with increment as the step value.
+ * Begun by: Nelesen, for CS 214 at Calvin College.
+ * Completed by: Sarah Whitten
+ ********************************************************/
+import java.util.Scanner; 		// Get input
+
+class LogTable{
+
+  public static void main(String[] args){
+    Scanner keyboard = new Scanner(System.in);
+    System.out.println("To display a table of logarithms,");
+    System.out.println("enter the start, stop and increment values: ");
+    double start, stop, increment;
+    start = keyboard.nextDouble();
+    stop = keyboard.nextDouble();
+    increment = keyboard.nextDouble();
+    double count;
+    count = start;
+
+    while (count <= stop) {
+        System.out.println("The logarithm of " + count + " is " + Math.log10(count));
+        count += increment;
+    }
+  }
+}
+
+smw42@gold32:~/CS214/labs/04$ javac -deprecation LogTable.java
+smw42@gold32:~/CS214/labs/04$ java LogTable
+To display a table of logarithms,
+enter the start, stop and increment values: 
+1
+10
+1
+The logarithm of 1.0 is 0.0
+The logarithm of 2.0 is 0.3010299956639812
+The logarithm of 3.0 is 0.47712125471966244
+The logarithm of 4.0 is 0.6020599913279624
+The logarithm of 5.0 is 0.6989700043360189
+The logarithm of 6.0 is 0.7781512503836436
+The logarithm of 7.0 is 0.8450980400142568
+The logarithm of 8.0 is 0.9030899869919435
+The logarithm of 9.0 is 0.9542425094393249
+The logarithm of 10.0 is 1.0
+smw42@gold32:~/CS214/labs/04$ exit
+
+Script done on Sat 23 Feb 2019 05:17:14 PM EST
+Script started on Sat 23 Feb 2019 05:15:24 PM EST
+smw42@gold32:~/CS214/labs/04$ cat log_table.adb
+-- log_table.adb computes a table of logarithms.
+--
+-- Input: start, stop, increment, three reals.
+-- Precondition: increment is positive.
+-- Output: A table of logarithms beginning with log(start),
+--         ending with log(stop), with intervals of increment.
+--
+-- Begun by: Prof. Adams, for CS 214 at Calvin College.
+-- Completed by: Sarah Whitten
+--------------------------------------------------------------
+
+with Ada.Text_IO, Ada.Float_Text_IO;
+with  Ada.Text_IO, Ada.Integer_Text_IO;
+with Ada.Numerics.Elementary_functions;
+use  Ada.Text_IO, Ada.Float_Text_IO;
+use  Ada.Text_IO, Ada.Integer_Text_IO;
+
+procedure log_table is
+
+    Start, Stop, Increment, Num : Float;
+
+begin                                           -- Prompt for input
+    Put_Line("To print a table of logarithms,");
+    Put("enter the start, stop, and increment values:");
+    New_Line;
+    Get(Start); Get(Stop); Get(Increment);
+    Num := Start;
+
+    -- Replace this line with a loop to generate the table of logs.
+    while Num <= Stop loop
+        Put("The logarithm of ");
+        Put(Integer(Num));
+        Put(" is ");
+        Put(Ada.Numerics.Elementary_Functions.Log(Num, 10.0));
+        New_Line;
+        Num := Num + Increment;
+    end loop;
+
+end log_table;
+smw42@gold32:~/CS214/labs/04$ gnatmake log_table
+gcc-5 -c log_table.adb
+gnatbind-5 -x log_table.ali
+gnatlink-5 log_table.ali
+smw42@gold32:~/CS214/labs/04$ ./log_table
+To print a table of logarithms,
+enter the start, stop, and increment values:
+1
+10
+1
+The logarithm of           1 is  0.00000E+00
+The logarithm of           2 is  3.01030E-01
+The logarithm of           3 is  4.77121E-01
+The logarithm of           4 is  6.02060E-01
+The logarithm of           5 is  6.98970E-01
+The logarithm of           6 is  7.78151E-01
+The logarithm of           7 is  8.45098E-01
+The logarithm of           8 is  9.03090E-01
+The logarithm of           9 is  9.54243E-01
+The logarithm of          10 is  1.00000E+00
+smw42@gold32:~/CS214/labs/04$ exit
+
+Script done on Sat 23 Feb 2019 05:16:01 PM EST
+Script started on Sat 23 Feb 2019 06:05:46 PM EST
+smw42@gold32:~/CS214/labs/04/clojure$ cat src/logTable.clj
+;;;; logTable.clj displays a table of logarithms.
+;;;;
+;;;; Input: start, stop and increment, three numbers.
+;;;; Precondition: start < stop && increment > 0.
+;;;; Output: A table of logarithms from start to stop,
+;;;;          with interval of increment.
+;;;;
+;;;; Begun by: Prof. Adams, for CS 214 at Calvin College.
+;;;; Completed by: Sarah Whitten
+;;;; Date: February 23, 2019
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(ns logTable)                                 ; name the program
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; displayLogTable() recursively generates the log-table.
+;;; Receive: start the first value for the table;
+;;;          stop, the last  value for the table;
+;;;           step, the step value for the table;
+;;; Precondition: start < stop && increment > 0.
+;;; Output: The table of logs from start to stop, by step.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; direct-recursive version
+(defn displayLogTable [start stop step]
+    (if (<= start stop)
+        (do 
+            (printf "The logarithm of %f is %f\n"
+                        start (Math/log10 start))
+            (displayLogTable (+ start step) stop step)
+        )
+    )
+)
+
+;; loop (indirect-recursion) version
+(defn displayLogTable2 [start stop step]
+  (loop [i start]                           ; set i to start
+    (when (<= i stop)                       ; if i <= stop:
+      (printf "The logarithm of %f is %f\n" ;  print one line
+                  i (Math/log10 i)
+      )
+      (recur (+ i step))                    ; recurse, i += step
+    )
+  )
+)
+
+;; indirect/tail-recursive version (just using recur)
+(defn displayLogTable3 [start stop step]
+  (if (<= start stop)                     ; if start <= stop:
+    (do                                      ; do these two things:
+      (printf "The logarithm of %f is %f\n"  ; - print one line
+                  start (Math/log10 start)
+      )
+      (recur (+ start step) stop step)       ; - recurse, start+=step
+    )
+  )
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; -main is a 'driver' for the displayLogTable() functions.
+;;; Input: start, stop and increment.
+;;; Output: The table of logarithms 
+;;;          from start to stop by increment
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn -main []
+ (println "To display a table of logarithms,")
+ (println "enter the start, stop, and increment values: ")
+ (let
+    [ start (double (read))
+      stop (double (read))
+      step (double (read))
+    ] 
+    (println)
+    (displayLogTable start stop step) 
+    (println)
+    (displayLogTable2 start stop step) 
+    (println)
+    (displayLogTable3 start stop step) 
+    (println)
+ )
+)
+smw42@gold32:~/CS214/labs/04/clojure$ clojure -m logTable
+To display a table of logarithms,
+enter the start, stop, and increment values: 
+1
+10
+1
+
+The logarithm of 1.000000 is 0.000000
+The logarithm of 2.000000 is 0.301030
+The logarithm of 3.000000 is 0.477121
+The logarithm of 4.000000 is 0.602060
+The logarithm of 5.000000 is 0.698970
+The logarithm of 6.000000 is 0.778151
+The logarithm of 7.000000 is 0.845098
+The logarithm of 8.000000 is 0.903090
+The logarithm of 9.000000 is 0.954243
+The logarithm of 10.000000 is 1.000000
+
+The logarithm of 1.000000 is 0.000000
+The logarithm of 2.000000 is 0.301030
+The logarithm of 3.000000 is 0.477121
+The logarithm of 4.000000 is 0.602060
+The logarithm of 5.000000 is 0.698970
+The logarithm of 6.000000 is 0.778151
+The logarithm of 7.000000 is 0.845098
+The logarithm of 8.000000 is 0.903090
+The logarithm of 9.000000 is 0.954243
+The logarithm of 10.000000 is 1.000000
+
+The logarithm of 1.000000 is 0.000000
+The logarithm of 2.000000 is 0.301030
+The logarithm of 3.000000 is 0.477121
+The logarithm of 4.000000 is 0.602060
+The logarithm of 5.000000 is 0.698970
+The logarithm of 6.000000 is 0.778151
+The logarithm of 7.000000 is 0.845098
+The logarithm of 8.000000 is 0.903090
+The logarithm of 9.000000 is 0.954243
+The logarithm of 10.000000 is 1.000000
+
+smw42@gold32:~/CS214/labs/04/clojure$ exit
+
+Script done on Sat 23 Feb 2019 06:06:36 PM EST
+Script started on Sat 23 Feb 2019 06:57:24 PM EST
+smw42@gold34:~/CS214/labs/04$ cat logTable.rb
+#! /usr/bin/ruby
+# logTable.rb displays a table of logarithms
+#
+# Begun by: Prof. Adams, for CS 214 at Calvin College.
+# Completed by: Sarah Whitten
+#
+# Input:  The start, stop and increment values
+# Precondition: The start value is less than the stop value, 
+#     and the increment is greater than 0
+# Output: A table of logarithms from start to stop, with increment
+#     as the step value
+
+
+if __FILE__ == $0
+    print "Enter the start value: "
+    start = gets;
+    print "Enter the stop value: "
+    stop = gets;
+    print "Enter the increment value: "
+    step = gets; 
+    num = start.to_i;  
+   
+    while num <= stop.to_i do
+        puts "The logarithm of #{ num } is #{ Math.log10(num.to_i) }"
+        num += step.to_i
+    end
+end
+
+smw42@gold34:~/CS214/labs/04$ ruby logTable.rb
+Enter the start value: 1
+Enter the stop value: 10
+Enter the increment value: 1
+The logarithm of 1 is 0.0
+The logarithm of 2 is 0.3010299956639812
+The logarithm of 3 is 0.47712125471966244
+The logarithm of 4 is 0.6020599913279624
+The logarithm of 5 is 0.6989700043360189
+The logarithm of 6 is 0.7781512503836436
+The logarithm of 7 is 0.8450980400142568
+The logarithm of 8 is 0.9030899869919435
+The logarithm of 9 is 0.9542425094393249
+The logarithm of 10 is 1.0
+smw42@gold34:~/CS214/labs/04$ exit
+
+Script done on Sat 23 Feb 2019 06:57:53 PM EST

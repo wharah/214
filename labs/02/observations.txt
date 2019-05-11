@@ -1,0 +1,96 @@
+CS 214 Lab 02
+Sarah Whitten (smw42)
+February 6, 2019
+
+Example 1: 
+
+In lines 740-770, commands are given for four input cases. If the input is "start" (case 1), it will display the "Start command received" message, as we saw during program execution. If the input is "stop" (case 2), the program will display the "Stop command received" message, as we also saw during program execution. Case 3 looks like it's for any input that's not "stop" or "start" because it just echos the input back to the user. There's also an  EOF case, where it will terminate the program. I can't tell what the first case (case 0) does.
+
+Example 2:
+
+Input: HELLO		Output: WORD
+Input: 420		Output: NUMBER
+Input: 1234567890	Output: NUMBER
+Input: CALVIN		Output: WORD
+Input: NO_THANKS	Output: WORD
+				_WORD
+Input: 3.14		Output: NUMBER
+				.NUMBER
+
+For the word with an underscore in it, it's not recognizing the underscore as a letter character, so it's saying that the string is finished, making the output the section before the underscore (WORD), then a newline character, the underscore, and then the other part of the word (WORD), followed by another newline character. It does the same thing when one of the inputs has a decimal place, except this time is has each side of the decimal point as a NUMBER.
+
+After changing the specifications:
+Input: _HI		Output: WORD
+Input: 3.14		Output: NUMBER
+
+Example 3:
+
+KEYWORD: class
+IDENTIFIER: StudentInfo
+PUNCTUATION: {
+KEYWORD: public
+PUNCTUATION: :
+IDENTIFIER: StudentInfo
+PUNCTUATION: (
+PUNCTUATION: )
+PUNCTUATION: {
+IDENTIFIER: myGPA
+OPERATOR: =
+DOUBLE: 0.0 (0)
+PUNCTUATION: ;
+IDENTIFIER: myHours
+OPERATOR: =
+INTEGER: 0 (0)
+PUNCTUATION: ;
+PUNCTUATION: }
+IDENTIFIER: StudentInfo
+PUNCTUATION: (
+KEYWORD: double
+IDENTIFIER: gpa
+PUNCTUATION: ,
+KEYWORD: int
+IDENTIFIER: hours
+PUNCTUATION: )
+PUNCTUATION: {
+IDENTIFIER: myGPA
+OPERATOR: =
+IDENTIFIER: gpa
+PUNCTUATION: ;
+IDENTIFIER: myHours
+OPERATOR: =
+IDENTIFIER: hours
+PUNCTUATION: ;
+PUNCTUATION: }
+KEYWORD: private
+PUNCTUATION: :
+KEYWORD: double
+IDENTIFIER: myGPA
+PUNCTUATION: ;
+KEYWORD: int
+IDENTIFIER: myHours
+PUNCTUATION: ;
+PUNCTUATION: }
+PUNCTUATION: ;
+
+Example 4:
+
+In this case, terminals are in capital letters or print statements. Non-terminals are all lower case letters.
+
+Input: heat on			Output: Heat turned on or off
+Input: set temperature 22	Output: Temperature set
+Input: heat off			Output: Heat turned on or off
+
+I noticed that the output isn't giving me any specific feedback. When I turn the heat on, it doesn't tell me if it's on, it just says that it's been either turned on or off. The same output is given when I say to turn the heat off. Also, when I set the temperature to something, it doesn't tell me which temperature it's been set to but instead gives the output: "Temperature set". This is because the commands we've given our program aren't specific. So a way that I could improve this would be to make the terminal outputs more specific.
+
+Example 5:
+
+Input: heat on			Output: Heat turned on
+Input: set temperature 65	Output: Temperature set to 65
+Input: heat off			Output: Heat turned off
+
+Example 6:
+
+Input: heat on			Output: Heat turned on
+Input: set temperature 60	Output: Temperature set to 60
+Input: set humidity 30		Output: Humidity set to 30
+Input: heat off			Output: Heat turned off
