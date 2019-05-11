@@ -1,0 +1,35 @@
+Script started on Tue 23 Apr 2019 03:12:56 PM EDT
+smw42@maroon22:~/CS214/labs/EC$ clojure
+Clojure 1.9.0
+user=> (defn incMaker [incValue]
+(fn [x]
+(+ x incValue)
+))
+#'user/incMaker
+user=> (def inc5 (incMaker 5))
+#'user/inc5
+user=> (inc5 5)
+10
+user=> (inc5 10)
+15
+user=> (defn greetingBuilder [greeting]
+(fn [visitor]
+(str greeting ", " visitor "!")
+))
+#'user/greetingBuilder
+user=> (def csGreeting (greetingBuilder "Welcome to CS 214"))
+#'user/csGreeting
+user=> (def englishGreeting (greetingBuilder "Hello"))
+#'user/englishGreeting
+user=> (def frenchGreeting (greetingBuilder "Bonjour"))
+#'user/frenchGreeting
+user=> (csGreeting "Ann")
+"Welcome to CS 214, Ann!"
+user=> (englishGreeting "Chris")
+"Hello, Chris!"
+user=> (frenchGreeting "Chris")
+"Bonjour, Chris!"
+user=> 
+smw42@maroon22:~/CS214/labs/EC$ exit
+
+Script done on Tue 23 Apr 2019 03:17:36 PM EDT

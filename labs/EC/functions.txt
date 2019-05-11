@@ -1,0 +1,9 @@
+1a. (fn [x y z] (max (Math/abs x) (Math/abs y) (Math/abs z)))
+
+2a. (def squareSquared (fn [x] (* (* x x) (* x x))))
+
+3a. (defn negate [sequence]
+(map (fn [x] (- 0 x)) sequence))
+
+4a. (defn sumSquares [sequence]
+(reduce + (map * sequence sequence)))

@@ -1,0 +1,35 @@
+Script started on Fri 19 Apr 2019 11:13:54 AM EDT
+smw42@gold23:~/CS214/labs/EC$ clojure
+Clojure 1.9.0
+user=> (map inc [1 2 3 4])
+(2 3 4 5)
+user=> (map - [1 2 3 4])
+(-1 -2 -3 -4)
+user=> (map - [1 2 3 4] [1 2 3 4])
+(0 0 0 0)
+user=> (map even? [1 2 3 4])
+(false true false true)
+user=> (map str ["a" "b" "c"] ["A" "B" "C"]
+)
+("aA" "bB" "cC")
+user=> (map count [[11] [11 22] [[11 22 33]])
+RuntimeException Unmatched delimiter: )  clojure.lang.Util.runtimeException (Util.java:221)
+user=> (map count [[11] [11 22] [11 22 33]])
+(1 2 3)
+user=> (map + [1 2 3 4] [1 2 3 4])
+(2 4 6 8)
+user=> (map * [1 2 3 4] [1 2 3 4])
+(1 4 9 16)
+user=> (Math/abs -3)
+3
+user=> (map (fn [x] (if (< x 0) (- x) x)) [-1 2 -3 4 -5])
+(1 2 3 4 5)
+user=> (defn subtract-n [n sequence]
+(map (fn [x] (- x n)) sequence))
+#'user/subtract-n
+user=> (subtract-n 2 [5 6 7 8])
+(3 4 5 6)
+user=> 
+smw42@gold23:~/CS214/labs/EC$ exit
+
+Script done on Fri 19 Apr 2019 11:22:01 AM EDT

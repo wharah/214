@@ -1,0 +1,17 @@
+Script started on Sat 13 Apr 2019 05:39:59 PM EDT
+smw42@gold33:~/CS214/labs/EC$ clojure
+Clojure 1.9.0
+user=> (def squareSquared (fn [x] (* (* x x) (* x x))))
+#'user/squareSquared
+user=> (squareSquared 2)
+16
+user=> (squareSquared -2)
+16
+user=> (squareSquared 3)
+81
+user=> (squareSquared -3)
+81
+user=> 
+smw42@gold33:~/CS214/labs/EC$ exit
+
+Script done on Sat 13 Apr 2019 05:40:50 PM EDT

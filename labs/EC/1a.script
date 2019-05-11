@@ -1,0 +1,13 @@
+Script started on Sat 13 Apr 2019 05:14:49 PM EDT
+smw42@gold33:~/CS214/labs/EC$ clojure
+Clojure 1.9.0
+user=> ((fn [x y z] (max (Math/abs x) (Math/abs y) (Math/abs z))) -2 4 -7)
+7
+user=> ((fn [x y z] (max (Math/abs x) (Math/abs y) (Math/abs z))) 3 2 1)
+3
+user=> ((fn [x y z] (max (Math/abs x) (Math/abs y) (Math/abs z))) -1000 9000 -3000)
+9000
+user=> 
+smw42@gold33:~/CS214/labs/EC$ exit
+
+Script done on Sat 13 Apr 2019 05:16:07 PM EDT

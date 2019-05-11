@@ -1,0 +1,225 @@
+Script started on Sat 13 Apr 2019 04:58:30 PM EDT
+smw42@gold33:~$ clojure
+Clojure 1.9.0
+user=> (+ 1 2 3 4 5)
+15
+user=> 
+smw42@gold33:~$ exit
+
+Script done on Sat 13 Apr 2019 04:59:17 PM EDT
+Script started on Sat 13 Apr 2019 05:00:13 PM EDT
+smw42@gold33:~$ clojure
+Clojure 1.9.0
+user=> (fn [x] (+ x x)) )
+#object[user$eval145$fn__146 0x5911e990 "user$eval145$fn__146@5911e990"]
+user=> ((fn [x] (+ x x)) 21)
+42
+user=> ((fn [x y] (+ (* x x) (* y y))) 3 4)
+25
+user=> 
+smw42@gold33:~$ exit
+
+Script done on Sat 13 Apr 2019 05:03:31 PM EDT
+Script started on Sat 13 Apr 2019 05:14:49 PM EDT
+smw42@gold33:~/CS214/labs/EC$ clojure
+Clojure 1.9.0
+user=> ((fn [x y z] (max (Math/abs x) (Math/abs y) (Math/abs z))) -2 4 -7)
+7
+user=> ((fn [x y z] (max (Math/abs x) (Math/abs y) (Math/abs z))) 3 2 1)
+3
+user=> ((fn [x y z] (max (Math/abs x) (Math/abs y) (Math/abs z))) -1000 9000 -3000)
+9000
+user=> 
+smw42@gold33:~/CS214/labs/EC$ exit
+
+Script done on Sat 13 Apr 2019 05:16:07 PM EDT
+Script started on Sat 13 Apr 2019 05:18:33 PM EDT
+smw42@gold33:~/CS214/labs/EC$ clojure
+Clojure 1.9.0
+user=> ((fn [x y z] (+ x y z)) 1 2 3)
+6
+user=> ((fn [x] (nil? x)) 7)
+false
+user=> ((fn [x] (nil? x)) 0)
+false
+user=> ((fn [] 17.2))
+17.2
+user=> 
+smw42@gold33:~/CS214/labs/EC$ exit
+
+Script done on Sat 13 Apr 2019 05:20:20 PM EDT
+Script started on Sat 13 Apr 2019 05:24:03 PM EDT
+smw42@gold33:~/CS214/labs/EC$ clojure
+Clojure 1.9.0
+user=> (def triple (fn [x] (* x 3)))
+#'user/triple
+user=> (triple 4)
+12
+user=> (#(* % 3) 4)
+12
+user=> (#(+ (* %1 %1) (* %2 %2)) 3 4)
+25
+user=> (def sum2Squares #(+ (* %1 %1) (* %2 %2)))
+#'user/sum2Squares
+user=> (sum2Squares 3 4)
+25
+user=>
+smw42@gold33:~/CS214/labs/EC$ exit
+
+Script done on Sat 13 Apr 2019 05:31:37 PM EDT
+Script started on Sat 13 Apr 2019 05:39:59 PM EDT
+smw42@gold33:~/CS214/labs/EC$ clojure
+Clojure 1.9.0
+user=> (def squareSquared (fn [x] (* (* x x) (* x x))))
+#'user/squareSquared
+user=> (squareSquared 2)
+16
+user=> (squareSquared -2)
+16
+user=> (squareSquared 3)
+81
+user=> (squareSquared -3)
+81
+user=> 
+smw42@gold33:~/CS214/labs/EC$ exit
+
+Script done on Sat 13 Apr 2019 05:40:50 PM EDT
+Script started on Fri 19 Apr 2019 11:13:54 AM EDT
+smw42@gold23:~/CS214/labs/EC$ clojure
+Clojure 1.9.0
+user=> (map inc [1 2 3 4])
+(2 3 4 5)
+user=> (map - [1 2 3 4])
+(-1 -2 -3 -4)
+user=> (map - [1 2 3 4] [1 2 3 4])
+(0 0 0 0)
+user=> (map even? [1 2 3 4])
+(false true false true)
+user=> (map str ["a" "b" "c"] ["A" "B" "C"]
+)
+("aA" "bB" "cC")
+user=> (map count [[11] [11 22] [11 22 33]])
+(1 2 3)
+user=> (map + [1 2 3 4] [1 2 3 4])
+(2 4 6 8)
+user=> (map * [1 2 3 4] [1 2 3 4])
+(1 4 9 16)
+user=> (Math/abs -3)
+3
+user=> (map (fn [x] (if (< x 0) (- x) x)) [-1 2 -3 4 -5])
+(1 2 3 4 5)
+user=> (defn subtract-n [n sequence]
+(map (fn [x] (- x n)) sequence))
+#'user/subtract-n
+user=> (subtract-n 2 [5 6 7 8])
+(3 4 5 6)
+user=> 
+smw42@gold23:~/CS214/labs/EC$ exit
+
+Script done on Fri 19 Apr 2019 11:22:01 AM EDT
+Script started on Fri 19 Apr 2019 11:28:45 AM EDT
+smw42@gold23:~/CS214/labs/EC$ clojure
+Clojure 1.9.0
+user=> (defn negate [sequence]
+(map (fn [x] (- 0 x)) sequence))
+#'user/negate
+user=> (negate [-1 2 -3])
+(1 -2 3)
+user=> (negate [4 -5 6])
+(-4 5 -6)
+user=> 
+smw42@gold23:~/CS214/labs/EC$ exit
+
+Script done on Fri 19 Apr 2019 11:30:00 AM EDT
+Script started on Fri 19 Apr 2019 11:31:03 AM EDT
+smw42@gold23:~/CS214/labs/EC$ clojure
+Clojure 1.9.0
+user=> (reduce + [1 2 3])
+6
+user=> (reduce + '(1 2 3))
+6
+user=> (reduce max [1 2 3])
+3
+user=> (reduce conj [1 2 3] [4 5 6])
+[1 2 3 4 5 6]
+user=> (reduce + [1 2 3 4 5])
+15
+user=> (reduce + 1 [2 3 4 5])
+15
+user=> (reduce + 1 '(2 3 4 5))
+15
+user=> (reduce max 5 [4 3 2 1])
+5
+user=> (reduce bit-or [1 2 3 4])
+7
+user=> (reduce str ["a" "b" "c"])
+"abc"
+user=> (reduce + 1 2 [3 4 5])
+ArityException Wrong number of args (4) passed to: core/reduce  clojure.lang.AFn.throwArity (AFn.java:429)
+user=> (reduce + 1 '(2 3 4) 5)
+ArityException Wrong number of args (4) passed to: core/reduce  clojure.lang.AFn.throwArity (AFn.java:429)
+user=> (defn csv [seq]
+(reduce (fn [a b] (str a "," b)) seq))
+#'user/csv
+user=> (csv [11 22 33])
+"11,22,33"
+user=> (defn totalItems [seqOfSeqs]
+(reduce + (map count seqOfSeqs)))
+#'user/totalItems
+user=> (totalItems [["Ann"] ["Bob" "Chris"] ["Dan" "Eve" "Fred"]])
+6
+user=> 
+smw42@gold23:~/CS214/labs/EC$ exit
+
+Script done on Fri 19 Apr 2019 11:43:32 AM EDT
+Script started on Tue 23 Apr 2019 03:07:02 PM EDT
+smw42@maroon22:~/CS214/labs/EC$ clojure
+Clojure 1.9.0
+user=> (defn sumSquares [sequence]
+(reduce + (map * sequence sequence)))
+#'user/sumSquares
+user=> (sumSquares '(1 2 3))
+14
+user=> (sumSquares '(1 2 3 4 5))
+55
+user=> (sumSquares [-1 -2 -3 0 1])
+15
+user=> 
+smw42@maroon22:~/CS214/labs/EC$ exit
+
+Script done on Tue 23 Apr 2019 03:08:00 PM EDT
+Script started on Tue 23 Apr 2019 03:12:56 PM EDT
+smw42@maroon22:~/CS214/labs/EC$ clojure
+Clojure 1.9.0
+user=> (defn incMaker [incValue]
+(fn [x]
+(+ x incValue)
+))
+#'user/incMaker
+user=> (def inc5 (incMaker 5))
+#'user/inc5
+user=> (inc5 5)
+10
+user=> (inc5 10)
+15
+user=> (defn greetingBuilder [greeting]
+(fn [visitor]
+(str greeting ", " visitor "!")
+))
+#'user/greetingBuilder
+user=> (def csGreeting (greetingBuilder "Welcome to CS 214"))
+#'user/csGreeting
+user=> (def englishGreeting (greetingBuilder "Hello"))
+#'user/englishGreeting
+user=> (def frenchGreeting (greetingBuilder "Bonjour"))
+#'user/frenchGreeting
+user=> (csGreeting "Ann")
+"Welcome to CS 214, Ann!"
+user=> (englishGreeting "Chris")
+"Hello, Chris!"
+user=> (frenchGreeting "Chris")
+"Bonjour, Chris!"
+user=> 
+smw42@maroon22:~/CS214/labs/EC$ exit
+
+Script done on Tue 23 Apr 2019 03:17:36 PM EDT

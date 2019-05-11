@@ -1,0 +1,9 @@
+Script started on Sat 13 Apr 2019 04:58:30 PM EDT
+smw42@gold33:~$ clojure
+Clojure 1.9.0
+user=> (+ 1 2 3 4 5)
+15
+user=> 
+smw42@gold33:~$ exit
+
+Script done on Sat 13 Apr 2019 04:59:17 PM EDT
