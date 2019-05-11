@@ -1,0 +1,254 @@
+Script started on Tue 12 Mar 2019 10:14:39 PM EDT
+smw42@gold29:~/CS214/projects/06$ cat PrintArray.java
+/* PrintArray.java is a driver for function PrintArray().
+ * Author: Sarah Whitten
+ * Date: March 11, 2019
+ ****************************************************************/
+
+import java.util.*;
+
+public class PrintArray {
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+    	System.out.print("Enter the size of your array:\n");
+
+    	int size = s.nextInt();
+    	double ourArray[];
+    	ourArray = new double [size];
+    	ReadArray(ourArray, size, s);
+    	PrintArray(ourArray, size);
+	}
+
+
+	public static void PrintArray(double[] anArray, int size) {
+		System.out.println("Here are the contents of your array: ");
+		for (int i = 0; i < size; i++) {
+			System.out.println(anArray[i]);
+		}
+	}
+
+	public static void ReadArray(double[] anArray, int size, Scanner scan) {
+		System.out.println("Enter the contents of your array: ");
+		for (int i = 0; i < size; i++) {
+			anArray[i] = scan.nextDouble();
+		}
+	}
+}
+smw42@gold29:~/CS214/projects/06$ javac -deprecation PrintArray.java
+smw42@gold29:~/CS214/projects/06$ java PrintArray
+Enter the size of your array:
+3
+Enter the contents of your array: 
+1
+2
+3
+Here are the contents of your array: 
+1.0
+2.0
+3.0
+smw42@gold29:~/CS214/projects/06$ exit
+
+Script done on Tue 12 Mar 2019 10:15:19 PM EDT
+Script started on Tue 12 Mar 2019 10:18:00 PM EDT
+smw42@gold29:~/CS214/projects/06$ cat print.adb
+-- print.adb creates and displays a user-createed array
+--
+-- Input: size of array, content of array
+-- Output: the contents of the array
+--
+-- Author: Sarah Whitten
+-- Date: March 11, 2019
+----------------------------------------------------
+
+with Ada.Text_IO, Ada.Integer_Text_IO, Ada.Float_Text_IO;
+use  Ada.Text_IO, Ada.Integer_Text_IO, Ada.Float_Text_IO;
+
+procedure print is
+
+	type Float_Array is array (Positive range <>) of float;
+
+	theSize : Integer;
+	anArray : Float_Array(1..theSize);
+
+	procedure print_array(theSize : Integer; anArray : in Float_Array) is
+
+	begin
+		for I in 1..theSize loop
+			Put_Line(Float'Image(anArray(I)));
+		end loop;
+	end print_array;
+
+	procedure read_array(theSize : Integer; anArray : in out Float_Array) is
+
+	begin
+		for I in 1..theSize loop
+			Get(anArray(I));
+		end loop;
+	end read_array;
+
+begin
+	Put_Line("Enter the size of your array:");
+	Get(theSize);
+	Put_Line("Enter the contents of your array:");
+	read_array(theSize, anArray);
+	Put_Line("Here are the contents of your array:");
+	print_array(theSize, anArray);
+end print;
+smw42@gold29:~/CS214/projects/06$ gnatmake print
+gcc-5 -c print.adb
+print.adb:18:34: warning: "theSize" may be referenced before it has a value
+gnatbind-5 -x print.ali
+gnatlink-5 print.ali
+smw42@gold29:~/CS214/projects/06$ ./print
+Enter the size of your array:
+3
+Enter the contents of your array:
+1
+2
+3
+Here are the contents of your array:
+ 1.00000E+00
+ 2.00000E+00
+ 3.00000E+00
+smw42@gold29:~/CS214/projects/06$ exit
+
+Script done on Tue 12 Mar 2019 10:18:30 PM EDT
+Script started on Tue 12 Mar 2019 11:48:19 PM EDT
+smw42@gold29:~/CS214/projects/06/clojure$ cat src/printArray.clj
+;; print.clj "test-drives" function printArray().
+;;
+;; Output: the contents of the user-created array.
+;;
+;; Usage: clojure -m print
+;;
+;; Created by: Sarah Whitten
+;; Date: March 11, 2019
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(ns printArray)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; printArray() displays the array values.       
+;; Receive: anArray, a vector; size, an integer.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; I tested this separately from the readArray() function
+;; and it works fine. I just can't figure out how to modify
+;; the array and spit it back out to be printed
+(defn printArray [anArray size]
+	(println "Here are the contents of your array:")
+	(loop [i 0]
+		(when (< i size)
+			(println (get anArray i))
+			(recur (+ i 1))
+		)
+	)
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; readArray() assigns values to the array     
+;; Receive: size, an integer
+;; Return: anArray, a vector containing the correct values
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; WHY WON'T IT WORK
+(defn readArray [size]
+	(println "Enter the contents of your array:")
+	(let
+		[ anArray (vector) ]
+		(loop [i 0]
+			(when (< i size)
+				(concat anArray (double (read)))
+				(recur (+ i 1))
+			)
+		)
+		anArray
+	)
+)
+
+(defn -main []
+	(println "Enter the size of your array:")
+	(let
+		[ size (int (read))
+		  ourArray (readArray size)
+		  ; testArray [0.0, 1.0]
+		]
+		; (println ourArray)
+		; (println testArray)
+		; (printArray testArray size)
+		(printArray ourArray size)
+	)
+)
+smw42@gold29:~/CS214/projects/06/clojure$ clojure -m printArray
+Enter the size of your array:
+3
+Enter the contents of your array:
+1
+2
+3
+Here are the contents of your array:
+nil
+nil
+nil
+smw42@gold29:~/CS214/projects/06/clojure$ exit
+
+Script done on Tue 12 Mar 2019 11:49:33 PM EDT
+Script started on Tue 12 Mar 2019 10:24:07 PM EDT
+smw42@gold29:~/CS214/projects/06$ cat print.rb
+# print.rb creates and displays a user-specified array
+# Output: the contents of the array
+#
+# Created by: Sarah Whitten
+# Date: March 11, 2019
+########################################################
+
+###############################################
+# printArray() displays the contents of the array
+# Receive: anArray, an array of numbers
+# Return: void
+################################################
+
+def printArray anArray
+	anArray.each do |i|
+		puts i
+	end
+end
+
+###############################################
+# readArray() inputs values into the array
+# Receive: anArray, an array of numbers
+# Return: void
+################################################
+
+def readArray anArray
+	for i in 1..anArray.size
+		anArray[i] = gets.to_i
+	end
+end
+
+def main
+	puts "Enter the size of your array:"
+	size = gets.to_i
+	anArray = Array.new size
+	puts "Enter the contents of your array:"
+	readArray anArray
+	print "Here are the contents of your array:"
+	printArray anArray
+end
+
+main
+smw42@gold29:~/CS214/projects/06$ ruby print.rb
+Enter the size of your array:
+3
+Enter the contents of your array:
+1
+2
+3
+Here are the contents of your array:
+1
+2
+3
+smw42@gold29:~/CS214/projects/06$ exit
+
+Script done on Tue 12 Mar 2019 10:24:30 PM EDT

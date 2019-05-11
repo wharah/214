@@ -1,0 +1,191 @@
+Script started on Tue 26 Feb 2019 10:36:43 PM EST
+smw42@gold10:~/CS214/projects/04$ cat factorial.java
+/* factorial.java is a driver for function factorial().
+ * Author: Sarah Whitten
+ * Date: February 25, 2019
+ ****************************************************************/
+
+import java.util.*;
+
+public class factorial
+{
+    public static void main(String[] args)
+    {
+    	Scanner s = new Scanner(System.in);
+    	System.out.print("To compute n!, enter n: ");
+
+    	int base = s.nextInt();
+    	int result = factorial(base);
+
+    	System.out.println(base + "! = " + result);
+    }
+
+    private static int factorial(int base)
+    {
+    	int counter = 1;
+    	for (int i = 2; i <= base; i++)
+    	{
+    		counter *= i;
+    	}
+    	return counter;
+    }
+}
+smw42@gold10:~/CS214/projects/04$ javac -deprecation factorial.java
+smw42@gold10:~/CS214/projects/04$ java factorial
+To compute n!, enter n: 1
+1! = 1
+smw42@gold10:~/CS214/projects/04$ java factorial
+To compute n!, enter n: 3
+3! = 6
+smw42@gold10:~/CS214/projects/04$ java factorial
+To compute n!, enter n: 6
+6! = 720
+smw42@gold10:~/CS214/projects/04$ exit
+
+Script done on Tue 26 Feb 2019 10:37:13 PM EST
+Script started on Tue 26 Feb 2019 10:27:42 PM EST
+smw42@gold10:~/CS214/projects/04$ cat factorial.adb
+-- factorial.adb computes the factorial of a given number
+--
+-- Input: Integer
+-- Output: Factorial
+--
+-- Begun by: Prof. Adams, CS 214 at Calvin College.
+-- Completed by: Sarah Whitten
+-- Date: February 25, 2019
+----------------------------------------------------
+
+with Ada.Text_IO, Ada.Integer_Text_IO;
+use  Ada.Text_IO, Ada.Integer_Text_IO;
+
+procedure factorial is
+
+	base, result : Integer;
+
+	function factorialOf(base : Integer) return Integer is
+	begin
+		result := 1;
+		for i in 1 .. base loop
+			result := result * i;
+		end loop;
+		return result;
+	end factorialOf;
+
+begin
+	Put("To compute n!, enter n: ");
+	Get(base);
+	result := factorialOf(base);
+	Put(base);
+	Put("! = ");
+	Put(result);
+	New_Line;
+end factorial;
+smw42@gold10:~/CS214/projects/04$ gnatmake factorial.adb
+gcc-5 -c factorial.adb
+gnatbind-5 -x factorial.ali
+gnatlink-5 factorial.ali
+smw42@gold10:~/CS214/projects/04$ ./factorial
+To compute n!, enter n: 1
+          1! =           1
+smw42@gold10:~/CS214/projects/04$ ./factorial
+To compute n!, enter n: 3
+          3! =           6
+smw42@gold10:~/CS214/projects/04$ ./factorial
+To compute n!, enter n: 6
+          6! =         720
+smw42@gold10:~/CS214/projects/04$ exit
+
+Script done on Tue 26 Feb 2019 10:28:38 PM EST
+Script started on Tue 26 Feb 2019 10:29:44 PM EST
+smw42@gold10:~/CS214/projects/04/clojure$ cat src/factorial.clj
+;;;; factorial.clj is a driver for function factorialOf.
+;;;;
+;;;; Input: Integer
+;;;; Output: Factorial of given integer
+;;;;
+;;;; Usage: clojure -m factorial
+;;;;
+;;;; Auhtor: Sarah Whitten
+;;;; Date: February 25, 2019
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(ns factorial)                    ; name the program
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; displayLogTable() recursively generates the log-table.
+;;; Receive: start the first value for the table;
+;;;          stop, the last  value for the table;
+;;;           step, the step value for the table;
+;;; Precondition: start < stop && increment > 0.
+;;; Output: The table of logs from start to stop, by step.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; direct-recursive version
+(defn factorialOf [base limit i]
+    (if (<= i limit)
+    	(factorialOf (* base i) limit (+ i 1))
+    	base)
+)
+
+(defn -main []
+	(println "To compute n!, enter n: ")
+	(let 
+		[limit (double (read))]
+	(print limit) (print "! = ")
+	(println (factorialOf 1 limit 1))
+	)
+)
+smw42@gold10:~/CS214/projects/04/clojure$ clojure -m factorial
+To compute n!, enter n: 
+1
+1.0! = 1
+smw42@gold10:~/CS214/projects/04/clojure$ clojure -m factorial
+To compute n!, enter n: 
+3
+3.0! = 6
+smw42@gold10:~/CS214/projects/04/clojure$ clojure -m factorial
+To compute n!, enter n: 
+6
+6.0! = 720
+smw42@gold10:~/CS214/projects/04/clojure$ exit
+
+Script done on Tue 26 Feb 2019 10:30:23 PM EST
+Script started on Tue 26 Feb 2019 10:30:43 PM EST
+smw42@gold10:~/CS214/projects/04$ cat factorial.rb
+#! /usr/bin/ruby
+# factorial.rb gives the factorial of an integer n
+# Author: Sarah Whitten
+# Date: February 26, 2019
+################################################################
+
+# Input:  n, an integer
+# Output: factorial of n
+
+def factorial (base)
+	count = 1
+	for i in 2..base do
+		count = count * i
+	end
+	return count
+end
+
+if __FILE__ == $0
+   puts "To compute n!, enter n: "
+   base = gets.to_i
+   puts "#{ base }! = #{factorial(base)}"
+end
+smw42@gold10:~/CS214/projects/04$ ruby factorial.rb
+To compute n!, enter n: 
+1
+1! = 1
+smw42@gold10:~/CS214/projects/04$ ruby factorial.rb
+To compute n!, enter n: 
+3
+3! = 6
+smw42@gold10:~/CS214/projects/04$ ruby factorial.rb
+To compute n!, enter n: 
+6
+6! = 720
+smw42@gold10:~/CS214/projects/04$ exit
+
+Script done on Tue 26 Feb 2019 10:31:39 PM EST
