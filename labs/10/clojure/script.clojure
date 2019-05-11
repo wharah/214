@@ -1,0 +1,261 @@
+Script started on Sat 20 Apr 2019 05:57:07 PM EDT
+smw42@gold33:~/CS214/labs/10/clojure$ cd src
+smw42@gold33:~/CS214/labs/10/clojure/src$ cat birds.clj Bird.clj Duck.clj Goose.clj Owl.clj
+;; birds.clj illustrates inheritance and polymorphism in Clojure.
+;;
+;; Output: the results of testing the Bird functions.
+;;
+;; Usage: clojure -m birds
+;;
+;; Begun by: Prof. Adams, for CS 214 Lab 10 at Calvin College.
+;; Completed by: Sarah Whitten
+;; Date: April 20, 2019
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(ns birds
+  (:require
+      [Bird]
+     	[Duck]
+     	[Goose]
+     	[Owl]
+  )
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Function -main tests the classes in the Bird hierarchy.
+;;; Output: the results of testing the Bird functions.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn -main []
+  (let
+    [                              ;; Birds
+     bird0 (make-Bird)            ; default Bird constructor
+     bird1 (make-Bird "Hawkeye")  ; explicit Bird constructor
+                                   ;; Ducks
+     bird2 (make-Duck)            ; default Duck constructor
+     bird3 (make-Duck  "Donald")  ; explicit Duck constructor
+                                   ;; Geese
+     bird4 (make-Goose)           ; default Goose constructor
+     bird5 (make-Goose "Mother")  ; explicit Goose constructor
+                                   ;; Owls
+     bird6 (make-Owl)             ; default Owl constructor
+     bird7 (make-Owl "Woodsey")   ; explicit Owl constructor
+    ]
+
+    (println "\nWelcome to the Bird Park!\n")
+   	(println (toString bird0))
+   	(println (toString bird1))
+    (println)
+   	(println (toString bird2))
+   	(println (toString bird3))
+    (println)
+   	(println (toString bird4))
+   	(println (toString bird5))
+    (println)
+   	(println (toString bird6))
+  	 (println (toString bird7))
+    (println)
+    (println "Goodbye, and come again!\n")
+  )
+)
+ 
+;;;; Bird.clj provides a Bird "class".
+;;;; 
+;;;; Begun by: Prof. Adams, for CS 214 at Calvin College.
+;;;; Completed by: Sarah Whitten
+;;;; Date: April 20, 2019
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Define a Bird 'class' with one attribute, the Bird's name.
+;(defrecord Bird [name])
+(defrecord Bird [name])
+
+;;; Bird constructors
+;;; - default: no args
+;;;   Postcondition: name == a default value.
+;;; - explicit:
+;;;   Receive: itsName, a String.
+;;;   Postcondition: name == itsName.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn make-Bird
+		([]        (->Bird "Ann Onymous"))
+		([itsName] (->Bird itsName))
+)
+
+;;; accessor method for name attribute
+;;; Receive: this, a Bird object.
+;;; Return: this's name.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn getName [^Bird this]
+  (:name this)
+)
+
+(defmulti getClass class)
+(defmulti getCall  class)
+(defmulti toString class)
+
+;;; method to retrieve a Bird's class
+;;; Receive: this, a Bird object.
+;;; Return: "Bird".
+;;; Note: 'subclasses' of Bird must define this method.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defmethod getClass Bird [ _ ]
+  "Bird"
+)
+
+
+;;; method to retrieve a Bird's call
+;;; Receive: this, a Bird object.
+;;; Return: a default bird-call.
+;;; Note: 'subclasses' of Bird must define this method.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defmethod  getCall :default [ _ ]
+  "Squawk!"
+)
+
+;;; method to combine a Bird, its class and its call into a String.
+;;; Receive: this, a Bird object.
+;;; Return: a String representing this, its class, and its call.
+;;; Note: getClass and getCall are polymorphic methods.
+;;; Note also: the use of :default for its class means that
+;;;        'subclasses' may but are not required to define it.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defmethod toString :default [aBird]
+  (str (getName aBird) " " (getClass aBird) " says, \"" (getCall aBird) "\"")
+)
+
+;;;; Duck.clj provides a Duck "class".
+;;;; 
+;;;; Begun by: Prof. Adams, for CS 214 at Calvin College.
+;;;; Completed by: Sarah Whitten
+;;;; Date: April 20, 2019
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; bring in 'Bird' (to be used as superclass) 
+(load "Bird")
+
+;; define 'Duck' as 'subclass' of Bird
+(defrecord Duck [^Bird name] )
+
+;;; constructors
+;;; - default: takes no arguments
+;;;   Postcondition: name is initialized to a default value
+;;; - explicit: takes one parameter
+;;;   Receive: itsName, a String
+;;;   Postcondition: name == itsName
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn make-Duck
+  ([]                (->Duck "Ann Onymous"))
+  ([^String itsName] (->Duck itsName))
+)
+
+;;; method to retrieve a Duck's class
+;;; Receive: this, a Duck object.
+;;; Return: "Duck"
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defmethod getClass Duck [ _ ]
+  "Duck"
+)
+
+;;; method to retrieve a Duck's call
+;;; Receive: this, a Duck object.
+;;; Return: "Quack!"
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defmethod getCall Duck [ _ ]
+  "Quack!"
+)
+
+;;;; Goose.clj provides a Goose "class".
+;;;; 
+;;;; Begun by: Prof. Adams, for CS 214 at Calvin College.
+;;;; Completed by: Sarah Whitten
+;;;; Date: April 20, 2019
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; bring in 'Bird' (to be used as 'superclass')
+(load "Bird")
+
+(defrecord Goose [^Bird name] )
+
+;;; Goose constructors
+;;; - default: no args
+;;;   Postcondition: name == a default value. 
+;;; - explicit1:
+;;;   Receive: itsName, a String
+;;;   Postcondition: name == itsName.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn make-Goose
+  ([]                (->Goose "Ann Onymous"))
+  ([^String itsName] (->Goose itsName))
+)
+
+;;; method to retrieve a Goose's class
+;;; Receive: this, a Goose object.
+;;; Return: "Goose".
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defmethod getClass Goose [ _ ]
+  "Goose"
+)
+
+;;; method to retrieve a Goose's call
+;;; Receive: this, a Goose object.
+;;; Return: "Honk!"
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defmethod getCall Goose [ _ ]
+  "Honk!"
+)
+
+;;;; Owl.clj provides an Owl "class".
+;;;; 
+;;;; Begun by: Prof. Adams, for CS 214 at Calvin College.
+;;;; Completed by: Sarah Whitten
+;;;; Date: April 20, 2019
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ 
+(load "Bird")
+
+(defrecord Owl [^Bird name] )
+
+(defn make-Owl
+  ([]                (->Owl "Ann Onymous"))
+  ([^String itsName] (->Owl itsName))
+)
+
+(defmethod getClass Owl [ _ ]
+		"Owl"
+)
+
+(defmethod getCall Owl [ _ ]
+		"Hoo!"
+)
+
+smw42@gold33:~/CS214/labs/10/clojure/src$ cd ..
+smw42@gold33:~/CS214/labs/10/clojure$ make all
+clojure -m birds
+
+Welcome to the Bird Park!
+
+Ann Onymous Bird says, "Squawk!"
+Hawkeye Bird says, "Squawk!"
+
+Ann Onymous Duck says, "Quack!"
+Donald Duck says, "Quack!"
+
+Ann Onymous Goose says, "Honk!"
+Mother Goose says, "Honk!"
+
+Ann Onymous Owl says, "Hoo!"
+Woodsey Owl says, "Hoo!"
+
+Goodbye, and come again!
+
+smw42@gold33:~/CS214/labs/10/clojure$ exit
+
+Script done on Sat 20 Apr 2019 05:57:34 PM EDT

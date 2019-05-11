@@ -1,0 +1,72 @@
+V "GNAT Lib v5"
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RV NO_IO
+RV NO_SECONDARY_STACK
+RV SPARK_05
+
+U name_package%b	name_package.adb	bee3c3af NE OO PK
+W ada%s			ada.ads			ada.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W system.concat_5%s	s-conca5.adb		s-conca5.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+
+U name_package%s	name_package.ads	8b3af67d EE NE OO PK
+
+D ada.ads		20070406091342 3ffc8e18 ada%s
+D a-except.ads		20140730140058 5250cb69 ada.exceptions%s
+D a-ioexce.ads		20140225151544 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20141120112812 119b8fb3 ada.streams%s
+D a-tags.ads		20140730140058 dc4d0634 ada.tags%s
+D a-textio.ads		20140717063745 386df5d4 ada.text_io%s
+D a-unccon.ads		20070406091342 f9eb8f06 ada.unchecked_conversion%s
+D interfac.ads		20141120112812 6033a23f interfaces%s
+D i-cstrea.ads		20140801100435 e53d8b8e interfaces.c_streams%s
+D name_package.ads	20190405212311 8b3af67d name_package%s
+D name_package.adb	20190405211946 0db4c006 name_package%b
+D system.ads		20141031112219 1d274481 system%s
+D s-conca5.ads		20140225151544 875e432e system.concat_5%s
+D s-crtl.ads		20141120112812 0ebbdb71 system.crtl%s
+D s-exctab.ads		20140225151139 54135002 system.exception_table%s
+D s-ficobl.ads		20140718105747 078245e4 system.file_control_block%s
+D s-parame.ads		20140801093848 7e2a0d7f system.parameters%s
+D s-secsta.ads		20140225151139 86a2856d system.secondary_stack%s
+D s-soflin.ads		20140801100131 aa763b52 system.soft_links%s
+D s-stache.ads		20140225151139 a37c21ec system.stack_checking%s
+D s-stalib.ads		20150220094550 fa0a3617 system.standard_library%s
+D s-stoele.ads		20140225151139 2dc34a04 system.storage_elements%s
+D s-traent.ads		20140730135025 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20140731130224 9d58a4c0 system.unsigned_types%s
+D s-wchcon.ads		20140718092328 1b7d22d2 system.wch_con%s
+X 1 ada.ads
+16K9*Ada 19e8 11|7r6 7r23
+X 6 a-textio.ads
+49K13*Text_IO 471e16 11|7w10 7r27
+242U14*Put 11|91s17
+X 10 name_package.ads
+9K9*Name_Package 37E17 46l5 46e17 11|10b14 94l5 94t17
+13R14*Name 16r32 20r35 23r36 26r34 29r38 32r30 39c22 44e27 11|24r32 39r35
+. 51r36 63r34 75r38 89r30
+16U19*Init 16<24 17>18 17>25 17>33 11|24b19 30l21 30t25
+16r24 Nm{13R14} 11|24b24 27m17 28m17 29m17
+17a18 First{string} 11|25b18 27r31
+17a25 Middle{string} 11|25b25 28r32
+17a33 Last{string} 11|25b33 29r30
+20V18*getFirst{string} 20>28 11|39b18 42l21 42t29
+20r28 Nm{13R14} 11|39b28 41r24
+23V18*getMiddle{string} 23>29 11|51b18 54l21 54t30
+23r29 Nm{13R14} 11|51b29 53r24
+26V18*getLast{string} 26>27 11|63b18 66l21 66t28
+26r27 Nm{13R14} 11|63b27 65r24
+29V18*getFullName{string} 29>31 11|75b18 80l21 80t32 91s22
+29r31 Nm{13R14} 11|75b31 77r24 78r27 79r27
+32U19*Put 32>23 11|89b19 92l21 92t24
+32r23 Nm{13R14} 11|89b23 91r34
+37i17 NAME_SIZE{positive} 43r44
+41a25*myFirst{string} 11|27m20 41r27 77r27
+42a25*myMiddle{string} 11|28m20 53r27 78r30
+43a25*MyLast{string} 11|29m20 65r27 79r30
+
