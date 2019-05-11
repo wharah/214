@@ -1,0 +1,64 @@
+V "GNAT Lib v5"
+P SS ZX
+
+RN
+RV NO_DISPATCHING_CALLS
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_SECONDARY_STACK
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_ELABORATION_CODE
+RV SPARK_05
+
+U goose_package%b	goose_package.adb	d89265c5 NE OO PK
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+
+U goose_package%s	goose_package.ads	56d9d4b6 EE OO PF PK
+W ada.exceptions%s	a-except.adb		a-except.ali
+W ada.streams%s		a-stream.adb		a-stream.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
+W bird_package%s	bird_package.adb	bird_package.ali
+W flyingbird_package%s	flyingbird_package.adb	flyingbird_package.ali
+W system%s		system.ads		system.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W system.storage_elements%s  s-stoele.adb	s-stoele.ali
+
+D ada.ads		20070406091342 3ffc8e18 ada%s
+D a-except.ads		20140730140058 5250cb69 ada.exceptions%s
+D a-stream.ads		20141120112812 119b8fb3 ada.streams%s
+D a-tags.ads		20140730140058 dc4d0634 ada.tags%s
+D a-unccon.ads		20070406091342 f9eb8f06 ada.unchecked_conversion%s
+D a-uncdea.ads		20070406091342 f15a5ed1 ada.unchecked_deallocation%s
+D bird_package.ads	20190421000605 b73dc339 bird_package%s
+D flyingbird_package.ads  20190421000823 3abba4c0 flyingbird_package%s
+D goose_package.ads	20190421000834 db5fb34f goose_package%s
+D goose_package.adb	20190421000828 03cdd68a goose_package%b
+D system.ads		20141031112219 1d274481 system%s
+D s-exctab.ads		20140225151139 54135002 system.exception_table%s
+D s-parame.ads		20140801093848 7e2a0d7f system.parameters%s
+D s-secsta.ads		20140225151139 86a2856d system.secondary_stack%s
+D s-soflin.ads		20140801100131 aa763b52 system.soft_links%s
+D s-stache.ads		20140225151139 a37c21ec system.stack_checking%s
+D s-stalib.ads		20150220094550 fa0a3617 system.standard_library%s
+D s-stoele.ads		20140225151139 2dc34a04 system.storage_elements%s
+D s-stoele.adb		20140801093848 ed88f8fb system.storage_elements%b
+D s-string.ads		20140225151139 8fe54fb7 system.strings%s
+D s-ststop.ads		20140225151139 e6693757 system.strings.stream_ops%s
+D s-traent.ads		20140730135025 005bf670 system.traceback_entries%s
+X 7 bird_package.ads
+8K9*Bird_Package 61e17 9|9w6 11r5
+10H14*Bird_Type 59e35 9|16r32
+18U19*Init
+25V18*Name{string}
+X 8 flyingbird_package.ads
+10K9*FlyingBird_Package 35e23 9|10w5 12r9
+12R14*FlyingBird_Type<7|10R14> 33e19 9|34r40
+26V18*Movement{string}<7|53p14>
+X 9 goose_package.ads
+14K9*Goose_Package 34E22 39l5 39e18 10|9b14 32l5 32t18
+16R14*Goose_Type<7|10R14> 7|18p19 25p18 8|26P18 9|23P18 23r36 31P18 31r41
+. 34c22 37e35 10|16r36 27r41
+23V18*Call{string}<7|32p18> 23>23 10|16b18 19l21 19t25
+23r23 A_Goose{16R14} 10|16b23
+31V18*Type_Name{string}<8|19p19> 31>28 10|27b18 30l21 30t30
+31r28 A_Goose{16R14} 10|27b28
+

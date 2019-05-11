@@ -1,0 +1,71 @@
+;;;; My clojure file wasn't working but I can write my
+;;;; functions here and then run them in Terminal and show
+;;;; that they work as they should.
+;;;;
+;;;; This contains all the same documentation my file had
+;;;;
+;;;; By: Sarah Whitten
+;;;; Date: May 1, 2019
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Problem 1a
+;;; my-reverse() returns the superficial reverse list.
+;;; Receive: seq, a list.
+;;; Return: a list containing a reversed top layer
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn my-reverse [seq]
+(into '() sequence))
+
+		;;;;;;;;;;;;;;;;;;;;;;;;;
+		;;;; TEST AND RESULT ;;;;
+		;;;;;;;;;;;;;;;;;;;;;;;;;
+
+		(my-reverse '(a (b c) (e (f g))))
+		((e (f g)) (b c) a)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Problem 1b
+;;; super-reverse() returns the deep-reversed list.
+;;; Receive: seq, a list.
+;;; Return: a list containing completely reversed items
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn super-reverse [seq]
+(my-reverse (map #(if (coll? %) (super-reverse %) %) seq)))
+
+		;;;;;;;;;;;;;;;;;;;;;;;;;
+		;;;; TEST AND RESULT ;;;;
+		;;;;;;;;;;;;;;;;;;;;;;;;;
+
+		(super-reverse '(a (b c) (e (f g))))
+		(((g f) e) (c b) a)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Problem 2a
+;;; member?() tells you if a value is present in a list
+;;; Receive: seq, a list; value, a value
+;;; Return: true, if value is present; false, if not
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn member? [value seq]
+(if (= (first seq) value)
+true
+(if (= 1 (count seq))
+(if (not (= value seq))
+false)
+(member? value (rest seq))
+)))
+
+		;;;;;;;;;;;;;;;;;;;;;;;;;
+		;;;; TEST AND RESULT ;;;;
+		;;;;;;;;;;;;;;;;;;;;;;;;;
+
+		(member? '(1 2) '((1 2) 3 (4 (5 6))))
+		true
+
+		(member? 1 '((1 2) 3 (4 (5 6))))
+		false
+

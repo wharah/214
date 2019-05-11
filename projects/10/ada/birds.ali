@@ -1,0 +1,100 @@
+V "GNAT Lib v5"
+M P W=b
+P SS ZX
+
+RN
+RV NO_IO
+RV NO_DEFAULT_INITIALIZATION
+RV SPARK_05
+
+U birds%b		birds.adb		aa1797db NE OO SU
+W ada%s			ada.ads			ada.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W bird_package%s	bird_package.adb	bird_package.ali
+W duck_package%s	duck_package.adb	duck_package.ali
+W flyingbird_package%s	flyingbird_package.adb	flyingbird_package.ali
+W goose_package%s	goose_package.adb	goose_package.ali
+W kiwi_package%s	kiwi_package.adb	kiwi_package.ali
+W ostrich_package%s	ostrich_package.adb	ostrich_package.ali
+W owl_package%s		owl_package.adb		owl_package.ali
+W penguin_package%s	penguin_package.adb	penguin_package.ali
+W walkingbird_package%s	walkingbird_package.adb	walkingbird_package.ali
+
+D ada.ads		20070406091342 3ffc8e18 ada%s
+D a-except.ads		20140730140058 5250cb69 ada.exceptions%s
+D a-ioexce.ads		20140225151544 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20141120112812 119b8fb3 ada.streams%s
+D a-tags.ads		20140730140058 dc4d0634 ada.tags%s
+D a-textio.ads		20140717063745 386df5d4 ada.text_io%s
+D a-unccon.ads		20070406091342 f9eb8f06 ada.unchecked_conversion%s
+D a-uncdea.ads		20070406091342 f15a5ed1 ada.unchecked_deallocation%s
+D bird_package.ads	20190421000605 b73dc339 bird_package%s
+D birds.adb		20190421000814 c0369cc6 birds%b
+D duck_package.ads	20190421000809 e8227b22 duck_package%s
+D flyingbird_package.ads  20190421000823 3abba4c0 flyingbird_package%s
+D goose_package.ads	20190421000834 db5fb34f goose_package%s
+D interfac.ads		20141120112812 6033a23f interfaces%s
+D i-cstrea.ads		20140801100435 e53d8b8e interfaces.c_streams%s
+D kiwi_package.ads	20190421000634 d2e013ab kiwi_package%s
+D ostrich_package.ads	20190421000623 187f6b09 ostrich_package%s
+D owl_package.ads	20190421000840 81383231 owl_package%s
+D penguin_package.ads	20190421000613 3f9ecfa6 penguin_package%s
+D system.ads		20141031112219 1d274481 system%s
+D s-crtl.ads		20141120112812 0ebbdb71 system.crtl%s
+D s-exctab.ads		20140225151139 54135002 system.exception_table%s
+D s-ficobl.ads		20140718105747 078245e4 system.file_control_block%s
+D s-parame.ads		20140801093848 7e2a0d7f system.parameters%s
+D s-secsta.ads		20140225151139 86a2856d system.secondary_stack%s
+D s-soflin.ads		20140801100131 aa763b52 system.soft_links%s
+D s-stache.ads		20140225151139 a37c21ec system.stack_checking%s
+D s-stalib.ads		20150220094550 fa0a3617 system.standard_library%s
+D s-stoele.ads		20140225151139 2dc34a04 system.storage_elements%s
+D s-string.ads		20140225151139 8fe54fb7 system.strings%s
+D s-ststop.ads		20140225151139 e6693757 system.strings.stream_ops%s
+D s-traent.ads		20140730135025 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20140731130224 9d58a4c0 system.unsigned_types%s
+D s-wchcon.ads		20140718092328 1b7d22d2 system.wch_con%s
+D walkingbird_package.ads  20190420233604 988ed468 walkingbird_package%s
+X 1 ada.ads
+16K9*Ada 19e8 10|17r5 27r5
+X 6 a-textio.ads
+49K13*Text_IO 471e16 10|17w9 27r9
+166U14*New_Line 10|41s9 44s21 47s21 50s21 53s21 56s21 59s21 62s21 63s9
+263U14*Put_Line 10|42s9
+X 9 bird_package.ads
+8K9*Bird_Package 61e17 10|8w6 18r5
+18U19*Init 10|43s9 46s9 49s9 52s9 55s9 58s9 61s9
+46U19*Put 10|44s9 47s9 50s9 53s9 56s9 59s9 62s9
+X 10 birds.adb
+30U11*Birds 30b11 65l5 65t10
+32r9 Bird1{12|12R14} 43m14 44r13
+33r9 Bird2{11|16R14} 46m14 47r13
+34r9 Bird3{13|16R14} 49m14 50r13
+35r9 Bird4{18|16R14} 52m14 53r13
+36r9 Bird5{19|15R14} 55m14 56r13
+37r9 Bird6{17|15R14} 58m14 59r13
+38r9 Bird7{16|15R14} 61m14 62r13
+X 11 duck_package.ads
+14K9*Duck_Package 10|11w5 21r5 11|38e17
+16R14*Duck_Type<9|10R14> 10|33r17 11|36e35
+X 12 flyingbird_package.ads
+10K9*FlyingBird_Package 10|9w9 19r5 12|35e23
+12R14*FlyingBird_Type<9|10R14> 10|32r17 12|33e19
+X 13 goose_package.ads
+14K9*Goose_Package 10|12w5 22r5 13|39e18
+16R14*Goose_Type<9|10R14> 10|34r17 13|37e35
+X 16 kiwi_package.ads
+13K9*Kiwi_Package 10|16w5 26r5 16|38e17
+15R14*Kiwi_Type<9|10R14> 10|38r17 16|36e35
+X 17 ostrich_package.ads
+13K9*Ostrich_Package 10|15w5 25r5 17|38e20
+15R14*Ostrich_Type<9|10R14> 10|37r17 17|36e35
+X 18 owl_package.ads
+14K9*Owl_Package 10|13w5 23r5 18|39e16
+16R14*Owl_Type<9|10R14> 10|35r17 18|37e35
+X 19 penguin_package.ads
+13K9*Penguin_Package 10|14w5 24r5 19|38e20
+15R14*Penguin_Type<9|10R14> 10|36r17 19|36e35
+X 35 walkingbird_package.ads
+10K9*WalkingBird_Package 10|10w9 20r9 35|35e24
+
